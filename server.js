@@ -7,6 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
+app.all((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin" , "*")
+  next();
+})
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -17,7 +22,7 @@ const transporter = nodemailer.createTransport({
 
 
 app.post('/submit', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
 
     const mailOptions = {
         from: 'ksushant6566@gmail.com',
